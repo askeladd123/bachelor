@@ -1,11 +1,5 @@
-# godot
 export_presets.cfg
 *.translation
 export.cfg
 .import/
 .godot/
-
-# python
-__pycache__/
-.venv/
-venv/
