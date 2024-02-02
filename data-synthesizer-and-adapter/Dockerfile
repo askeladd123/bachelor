@@ -20,3 +20,4 @@ RUN sudo chown -R archuser:archuser adapter
 RUN sudo pacman -S --noconfirm python
 RUN cd adapter; python -m venv venv;  ./venv/bin/pip install -r requirements.txt
 
+COPY ./run.py ./run.py
