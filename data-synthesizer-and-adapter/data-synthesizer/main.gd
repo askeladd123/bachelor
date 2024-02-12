@@ -1,6 +1,11 @@
 extends Node
 var socket = WebSocketPeer.new()
-const DATA = "halla"
+
+enum { POSE_MODE, VIEWPOINT_MODE, OCCLUSION_MODE }
+var mode = VIEWPOINT_MODE
+var data_points = 12
+
+const DATA = 'halla'
 
 func _ready():
 	parse_command_line_arguments()
@@ -23,9 +28,6 @@ func _process(delta):
 
 func parse_command_line_arguments():
 	var args = Array(OS.get_cmdline_args())
-
-	var data_points = 12
-	var mode = "viewport"
 	
 	var i = 0
 	while i < args.size():
@@ -36,10 +38,18 @@ func parse_command_line_arguments():
 					i += 1 
 			"--mode":
 				if i + 1 < args.size():
-					mode = args[i + 1]
-					if mode not in ["pose", "viewport", "occlusion"]:
-						print("Invalid mode value: " + mode)
-						return
+
+					var input = args[i + 1]
+					if input == 'pose':
+						mode = POSE_MODE
+					elif input == 'viewpoint':
+						mode = VIEWPOINT_MODE
+					elif input == 'occlusion':
+						mode = OCCLUSION_MODE
+					else: 
+						print("Invalid mode value: " + input)
+						get_tree().quit()
+					
 					i += 1 
 			"--help-inner":
 				print_help()
@@ -55,7 +65,7 @@ func print_help():
 Usage: godot --script my_script.gd [options]
 Options:
   --data-points <integer>    Specify the number of data points.
-  --mode <value>                Specify the mode (pose, viewport, occlusion).
+  --mode <value>                Specify the mode (pose, viewpoint, occlusion).
   --help-inner                                Show this help screen.
 	""")
 
