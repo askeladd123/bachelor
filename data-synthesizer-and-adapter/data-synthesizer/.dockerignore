@@ -1,5 +1,0 @@
-export_presets.cfg
-*.translation
-export.cfg
-.import/
-.godot/
