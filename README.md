@@ -1,3 +1,8 @@
+> TOOD: provide info about session: mostly time used
+> TODO: either remove build and run scripts, orchange to bash and powershell scripts instead of python, because it is time consuming to make cross platform build scrip
+> TODO: change docker image to alpine linux to dratically reduce size
+> TODO: adapter: exit gracefully: async event loop and SIGTERM
+
 # bachelor
 > Ask Sødal, Philip Tran
 
