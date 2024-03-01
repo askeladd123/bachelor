@@ -1,5 +1,6 @@
 extends Node 
 
+const GENERATOR_VERSION = '0.0.1'
 var STARTUP_DATETIME = get_datetime() 
 var OS_NAME = OS.get_name() 
 var DIST_NAME = OS.get_distribution_name()
@@ -46,6 +47,7 @@ func _process(delta):
 					var image_as_text = Marshalls.raw_to_base64(raw)
 
 					var data = {
+						'generator version': GENERATOR_VERSION,
 						'host info': {
 							'operating system': OS_NAME,
 							'distribution': DIST_NAME,

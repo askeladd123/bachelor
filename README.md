@@ -31,6 +31,41 @@ See [docker hub](https://hub.docker.com/_/mongo) if you want to keep the data be
 ## data synthesizer
 This program generates images, and sends them over a websocket to data synthesizer adapter. Start: `godot --path ./data-synthesizer-and-adapter/data-synthesizer`. 
 
+This is an example of a json document sent over the websocket:
+```json
+{
+  "generator version": "0.0.1", 
+  "host info": {
+    "cpu": "AMD Ryzen 7 4700U with Radeon Graphics", 
+    "distribution": "Arch Linux", 
+    "gpu": ["", ""], 
+    "operating system": "Linux"
+  },
+  "datetime started": "2024-3-1 14:53", 
+  "generator mode": "viewpoint", 
+  "base image png base64": "iVBORw0KGgoAAAANSUhEUgAAA60AAAQgCAIAAACCTi0AAAAAAXNSR0IA...",
+  "segmentation mask png base64": "hgAgCIfDABAkQ8GAKDIBwMAUOSDAQAo8sEAABT5YAAAinwwAABFPhgAgCIfD..."
+}
+```
+
+|key                         |value                                                       |
+|----------------------------|------------------------------------------------------------|
+|generator version           |as we better the generation, we bump up the version         |
+|operating system            |example: Windows, Linux, Mac OS                             |
+|distribution                |mostly relevant on Linux                                    |
+|cpu                         |hardware used                                               | 
+|gpu                         |hardware used                                               |
+|datetime started            |when the first image in the batch started generating        |
+|generator mode              |what type of image to generate: pose, occlusion or viewpoint|
+|base image png base64       |encoded image trainig data                                  |
+|segmentation mask png base64|encoded image target data                                   | 
+  
+### about generator version
+When using the generator data, you want to use the newest data with best quality. Use this field. The version will be updated like this:
+- 0.0.x: minor, almost unnoticeable improvements
+- 0.x.0: major, highly noticeable improvements
+- x.0.0: will not be used. Maybe if we have a large, breaking change
+
 ## data synthesizer adapter
 This program does multiple things:
 - controls data synthesizer to commands
