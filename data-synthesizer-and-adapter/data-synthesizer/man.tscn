@@ -1,0 +1,252 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1yxdgok187ju"]
+
+[ext_resource type="PackedScene" uid="uid://67alac0hkkfn" path="res://man.glb" id="1_llion"]
+[ext_resource type="Script" path="res://Skeleton3D.gd" id="2_34enf"]
+
+[sub_resource type="GDScript" id="GDScript_w5bkw"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n31p0"]
+radius = 0.0541585
+height = 0.541585
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bmm5y"]
+radius = 0.0661883
+height = 0.661883
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_35lnj"]
+radius = 0.0526081
+height = 0.526081
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jpmjp"]
+radius = 0.0562401
+height = 0.562401
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beog6"]
+radius = 0.069472
+height = 0.69472
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7iw1o"]
+radius = 0.05624
+height = 0.5624
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ossiy"]
+radius = 0.069472
+height = 0.69472
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4rb5m"]
+radius = 0.101967
+height = 1.01968
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v72dg"]
+radius = 0.0884111
+height = 0.884111
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aeyd6"]
+radius = 0.101967
+height = 1.01968
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfayf"]
+radius = 0.0884111
+height = 0.884111
+
+[node name="lol" instance=ExtResource("1_llion")]
+
+[node name="Armature_001" parent="." index="0"]
+script = SubResource("GDScript_w5bkw")
+
+[node name="Skeleton3D" parent="Armature_001" index="0"]
+script = ExtResource("2_34enf")
+
+[node name="Hip" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 2.26589, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.270792)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.270792, 0)
+bone_name = "Bone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Hip" index="0"]
+transform = Transform3D(3.07806, 0, 0, 0, 0, 3.07806, 0, -1.00884, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_n31p0")
+
+[node name="Torso" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 2.86762, 0)
+joint_type = 1
+joint_offset = Transform3D(0.999997, 0, 0, 0, 0.999996, 0, 0, 0, 0.999998, 0, 0, 0.330941)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.330941, 0)
+bone_name = "Bone.001"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Torso" index="0"]
+transform = Transform3D(2.68033, 0, 0, 0, -3.56685e-08, 2.68033, 0, -0.816, -1.17161e-07, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_bmm5y")
+
+[node name="Head" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 3.46161, 0)
+joint_type = 3
+joint_offset = Transform3D(-0.0333274, 0, 0.999442, 0, 1, 0, -0.999442, 0, -0.0333274, 0, 0, 0.263041)
+joint_rotation = Vector3(0, 1.60413, 0)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.263041, 0)
+bone_name = "Bone.006"
+joint_constraints/angular_limit_enabled = false
+joint_constraints/angular_limit_upper = 45.0
+joint_constraints/angular_limit_lower = -40.18
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Head" index="0"]
+transform = Transform3D(4.45805, 0, 0, 0, 0, 4.45805, 0, -0.639479, 0, 0, 0, -0.0887933)
+shape = SubResource("CapsuleShape3D_35lnj")
+
+[node name="Left_Upper_Arm" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="4"]
+transform = Transform3D(0.947465, 0.00859247, -0.319747, 0.310224, 0.218866, 0.925127, 0.0779293, -0.975717, 0.204703, 0.514289, 2.74565, -0.115331)
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24514e-07, -1.49483e-07, 0.281199)
+body_offset = Transform3D(1, 1.54227e-06, 3.53903e-08, 4.28408e-08, 4.32134e-07, -1, 0, 1, -1.04308e-07, -8.34465e-07, 0.281199, 1.78814e-07)
+bone_name = "Bone.002"
+joint_constraints/swing_span = 60.39
+joint_constraints/twist_span = 0.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Left_Upper_Arm" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_jpmjp")
+
+[node name="Left_Elbow" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="5"]
+transform = Transform3D(0.902207, 0.270594, -0.335152, 0.381372, -0.138028, 0.913531, 0.201443, -0.94844, -0.228719, 0.720645, 2.16805, -0.0933896)
+joint_type = 3
+joint_offset = Transform3D(0.14436, 0, 0.989524, 0, 1, 0, -0.989524, 0, 0.14436, 1.799e-05, 2.81283e-05, 0.347504)
+joint_rotation = Vector3(0, 1.42593, 0)
+body_offset = Transform3D(1, 0.000435382, -5.52349e-05, 1.75089e-07, -0.00021328, -0.999588, 6.70552e-07, 0.995897, -7.03633e-05, 1.19209e-06, 0.347361, -3.56138e-06)
+bone_name = "Bone.003"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 18.81
+joint_constraints/angular_limit_lower = -2.88
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Left_Elbow" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_beog6")
+
+[node name="Right_Upper_Arm" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="6"]
+transform = Transform3D(0.947354, -0.0168585, 0.319747, -0.308302, 0.221565, 0.925127, -0.0864409, -0.975, 0.204703, -0.514289, 2.74565, -0.115329)
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19052e-06, 7.91621e-07, 0.281196)
+body_offset = Transform3D(1, 6.70552e-08, 5.58794e-09, -5.7742e-08, 1.49012e-08, -1, 0, 1, -5.96046e-08, -1.19209e-06, 0.281196, -7.7486e-07)
+bone_name = "Bone.009"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 180.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Right_Upper_Arm" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_7iw1o")
+
+[node name="Right_Elbow" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="7"]
+transform = Transform3D(0.902207, -0.271387, 0.335222, -0.381372, -0.138959, 0.913918, -0.201443, -0.952387, -0.228869, -0.720645, 2.16805, -0.0933934)
+joint_type = 3
+joint_offset = Transform3D(0.0383867, 0, 0.999253, 0, 0.99999, 0, -0.999259, 0, 0.0383865, -2.06883e-07, 2.23124e-07, 0.34736)
+joint_rotation = Vector3(0, 1.5324, 0)
+body_offset = Transform3D(1, -1.49012e-08, 9.38773e-07, 5.66244e-07, -1.49012e-08, -1, 4.76837e-07, 1, -1.49012e-07, -1.19209e-07, 0.34736, -1.71363e-07)
+bone_name = "Bone.010"
+joint_constraints/angular_limit_enabled = false
+joint_constraints/angular_limit_upper = 98.04
+joint_constraints/angular_limit_lower = -8.04
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Right_Elbow" index="0"]
+transform = Transform3D(1, 3.72529e-08, -1.49012e-08, -1.49012e-08, 0, 1, 2.23517e-08, -1, 1.49012e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ossiy")
+
+[node name="Left_Thigh" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="8"]
+transform = Transform3D(0.979617, -0.197492, -0.0366926, 0.036074, -0.00672967, 0.999248, -0.197606, -0.980263, 0.000535846, 0.206648, 1.48359, -0.0798854)
+joint_type = 3
+joint_offset = Transform3D(0.129491, 0, 0.991577, 0, 1, 0, -0.991577, 0, 0.129491, 2.39163e-06, 1.94789e-06, 0.509849)
+joint_rotation = Vector3(0, 1.44094, 0)
+body_offset = Transform3D(0.999999, 5.66244e-07, -3.75561e-06, -2.64772e-08, 1.04541e-07, -0.999921, -3.42727e-06, 0.999982, -3.30165e-06, -4.76837e-07, 0.509809, -2.64496e-07)
+bone_name = "Bone.004"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 90.0
+joint_constraints/angular_limit_lower = -90.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Left_Thigh" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_4rb5m")
+
+[node name="Left_Lower_Leg" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="9"]
+transform = Transform3D(0.979379, -0.198573, -0.0372659, 0.0424612, 0.0219655, 0.998857, -0.197521, -0.97984, 0.0299458, 0.241831, 0.532517, -0.0933947)
+joint_type = 3
+joint_offset = Transform3D(-0.0335074, 0, 0.999437, 0, 1, 0, -0.999437, 0, -0.0335074, -1.00953e-06, 9.86242e-08, 0.442054)
+joint_rotation = Vector3(0, 1.60431, 0)
+body_offset = Transform3D(1, -6.86944e-06, -7.59028e-08, -4.08385e-07, 1.78628e-06, -1, -3.72529e-07, 1, 4.65661e-08, 1.04308e-06, 0.442054, -1.19209e-07)
+bone_name = "Bone.005"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 9.64
+joint_constraints/angular_limit_lower = -98.45
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Left_Lower_Leg" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_v72dg")
+
+[node name="Right_Thigh" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="10"]
+transform = Transform3D(0.991454, 0.125154, 0.0366925, -0.0364701, -0.00406629, 0.998451, 0.125227, -0.992099, 0.000530247, -0.206647, 1.48362, -0.0798861)
+joint_type = 3
+joint_offset = Transform3D(0.14436, 0, 0.989524, 0, 1, 0, -0.989524, 0, 0.14436, -1.59447e-05, -3.0223e-06, 0.510223)
+joint_rotation = Vector3(0, 1.42593, 0)
+body_offset = Transform3D(0.999996, -4.74602e-06, 3.18343e-05, 4.39177e-08, -9.30217e-07, -0.999125, 7.45058e-09, 0.99997, 5.22239e-06, -2.98023e-07, 0.509777, 3.57628e-07)
+bone_name = "Bone.007"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 90.0
+joint_constraints/angular_limit_lower = -90.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Right_Thigh" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_aeyd6")
+
+[node name="Right_Lower_Leg" type="PhysicalBone3D" parent="Armature_001/Skeleton3D" index="11"]
+transform = Transform3D(0.991168, 0.127253, 0.0372658, -0.0407635, 0.0249796, 0.998856, 0.126175, -0.991554, 0.0299458, -0.24183, 0.53256, -0.0933937)
+joint_type = 3
+joint_offset = Transform3D(0.0165756, 0, 0.999856, 0, 0.999995, 0, -0.99986, 0, 0.0165755, 1.74815e-06, -1.04228e-07, 0.442012)
+joint_rotation = Vector3(0, 1.55422, 0)
+body_offset = Transform3D(0.999997, 2.98023e-08, 2.30502e-08, 1.82283e-06, -3.05474e-07, -1, 8.9407e-07, 0.999999, 3.35276e-08, -1.75834e-06, 0.442012, 8.9407e-08)
+bone_name = "Bone.008"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 4.82
+joint_constraints/angular_limit_lower = -102.97
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_001/Skeleton3D/Right_Lower_Leg" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_rfayf")

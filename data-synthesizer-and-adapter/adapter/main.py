@@ -39,7 +39,7 @@ def parse_args():
         else:
             raise argparse.ArgumentTypeError(f'The value passed `{value}` is not a valid mode.')
             
-    parser.add_argument('-m', '--mode', choices=['pose', 'viewpoint', 'occlusion'], default='viewpoint', type=to_mode, help='Choose which type of data to generate.')
+    parser.add_argument('-m', '--mode', choices=[CMD_GEN_POSE_MODE, CMD_GEN_VIEWPOINT_MODE, CMD_GEN_OCCLUSION_MODE], default='viewpoint', type=to_mode, help='Choose which type of data to generate.')
     parser.add_argument('-n', '--data-points', help='Number of image pairs to generate. Reads negative values like `-1` as infinite.', default=-1, type=int) 
     subparsers = parser.add_subparsers(dest='image_location', required=True, description='Where to write the images. ')
     to_output = subparsers.add_parser('to-output') 

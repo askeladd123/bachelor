@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bobcbqvubbpo4"]
+
+[ext_resource type="PackedScene" uid="uid://b1yxdgok187ju" path="res://man.tscn" id="1_73n6f"]
+[ext_resource type="Script" path="res://main.gd" id="1_gerdv"]
+[ext_resource type="Script" path="res://Randomizer.gd" id="2_umy4m"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="3_gypel"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oh25l"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_gerdv")
+
+[node name="lol" parent="." instance=ExtResource("1_73n6f")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.877991, -0.119398, 0.463546, 0, 0.968392, 0.249434, -0.478677, -0.219001, 0.85024, 2.6837, 3.75261, 4.72462)
+current = true
+script = ExtResource("3_gypel")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34888, 2.40127, 2.70112)
+light_color = Color(0.999939, 0.999998, 0.782894, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -2.45556, 0)
+shape = SubResource("BoxShape3D_oh25l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.259697, -0.60421, 0.753318, 0.196921, 0.796825, 0.571219, -0.945399, 0, 0.325915, 3.76237, 4.65471, 0)
+light_color = Color(0.792157, 0.882353, 1, 1)
+
+[node name="Randomizer" type="Node" parent="."]
+script = ExtResource("2_umy4m")
