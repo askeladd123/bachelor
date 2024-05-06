@@ -28,18 +28,7 @@ program_start_time = time.time()
 def parse_args():
     parser = argparse.ArgumentParser(description='This program is used to put images from a websocket into a MongoDB database. Requires other program `data synthesizer`over a websocket to work.')
     parser.add_argument('-w', '--wait', action='store', type=float, metavar='MS', default=0.0,  help='Time to pause the program between iterations, in MS milisecons. ')  
-
-    def to_mode(value):
-        if value == 'pose':
-            return CMD_GEN_POSE_MODE
-        elif value == 'viewpoint':
-            return CMD_GEN_VIEWPOINT_MODE
-        elif value == 'occlusion':
-            return CMD_GEN_OCCLUSION_MODE
-        else:
-            raise argparse.ArgumentTypeError(f'The value passed `{value}` is not a valid mode.')
-            
-    parser.add_argument('-m', '--mode', choices=['pose', 'viewpoint', 'occlusion'], default='viewpoint', type=to_mode, help='Choose which type of data to generate.')
+    parser.add_argument('-m', '--mode', choices=['pose', 'viewpoint', 'occlusion'], default='viewpoint', help='Choose which type of data to generate.')
     parser.add_argument('-n', '--data-points', help='Number of image pairs to generate. Reads negative values like `-1` as infinite.', default=-1, type=int) 
     subparsers = parser.add_subparsers(dest='image_location', required=True, description='Where to write the images. ')
     to_output = subparsers.add_parser('to-output') 
@@ -54,9 +43,20 @@ def parse_args():
     to_file.add_argument('-d', '--directory', type=to_directory, default='.',help='Folder to save images.')
 
     return parser.parse_args()
+
+def to_enum(mode_str):
+    if mode_str == 'pose':
+        return CMD_GEN_POSE_MODE
+    elif mode_str == 'viewpoint':
+        return CMD_GEN_VIEWPOINT_MODE
+    elif mode_str == 'occlusion':
+        return CMD_GEN_OCCLUSION_MODE
+    else:
+        raise Error(f'The string passed `{mode_str}` is not a valid mode.')
  
 async def main():
     args = parse_args()
+    mode = to_enum(args.mode)
 
     if args.image_location == 'to-output':
         async def handle_data(message):
@@ -105,7 +105,7 @@ async def main():
 
     async def run(websocket, path): 
         if args.image_location == 'to-output':
-            print('Client connected. Priting received content.')
+            print('Client connected. Printing received content.')
 
         if args.image_location == 'to-file':
             print(f'Client connected. Saving received content to folder `{args.directory}`.')
@@ -113,7 +113,7 @@ async def main():
         if args.image_location == 'to-mongo':
             print('Client connected. Sending received content to MongoDB database.')
 
-        await websocket.send(adapter_commands[args.mode])
+        await websocket.send(adapter_commands[mode])
 
         counter = args.data_points
 
@@ -134,7 +134,7 @@ async def main():
                     exit()
                     
                 save_task = asyncio.create_task(handle_data(message))
-                await websocket.send(adapter_commands[args.mode]) 
+                await websocket.send(adapter_commands[mode]) 
                 await save_task
 
                 counter -= 1
