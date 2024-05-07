@@ -52,7 +52,7 @@ func send_data():
 		while socket.get_available_packet_count(): 
 			var command_unchecked = socket.get_packet().get_string_from_utf8()
 			var command = adapter_commands.get(command_unchecked)
-			print(command)
+			print('got command: %s' % command)
 			match command:
 				null:
 					print('Command from adapter unrecognised: %s' % command_unchecked)
@@ -60,7 +60,7 @@ func send_data():
 				GEN_VIEWPOINT_MODE:
 					var json = extract_world_json()
 					socket.send_text(json)
-					print(json)
+					print('data sent')
 					return true
 
 				GEN_POSE_MODE:
