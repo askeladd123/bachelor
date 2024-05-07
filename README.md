@@ -1,3 +1,5 @@
+> changes: the pipeline was heavily modified because of time constraints. Much of this is now outdated. 
+
 > TODO: adapter: exit gracefully: async event loop and SIGTERM
 
 # bachelor

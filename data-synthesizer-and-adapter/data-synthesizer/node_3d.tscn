@@ -1,11 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnp3ln76rd6hy"]
+[gd_scene load_steps=10 format=3 uid="uid://tet53fghpvak"]
 
-[ext_resource type="PackedScene" uid="uid://4l41hqbvcmpy" path="res://man.tscn" id="1_73n6f"]
+[ext_resource type="PackedScene" uid="uid://bfw7373a3nqn8" path="res://man.tscn" id="1_73n6f"]
 [ext_resource type="Script" path="res://main.gd" id="1_gerdv"]
-[ext_resource type="Script" path="res://Randomizer.gd" id="2_umy4m"]
+[ext_resource type="Script" path="res://SignalBro.gd" id="2_umy4m"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="3_gypel"]
+[ext_resource type="Sky" uid="uid://f1a6ko11da4j" path="res://sky.tres" id="5_g4rbc"]
+[ext_resource type="Script" path="res://WorldEnvironment.gd" id="5_mterr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oh25l"]
+
+[sub_resource type="Environment" id="Environment_gn1pm"]
+background_mode = 2
+sky = ExtResource("5_g4rbc")
+ambient_light_color = Color(0.802195, 0.355728, 0.780251, 1)
+ambient_light_sky_contribution = 0.02
+ambient_light_energy = 0.06
+reflected_light_source = 1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3bgpj"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_gerdv")
@@ -18,7 +30,7 @@ current = true
 script = ExtResource("3_gypel")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34888, 2.40127, 2.70112)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28475, 4.56527, 2.37772)
 light_color = Color(0.999939, 0.999998, 0.782894, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -28,8 +40,14 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -2.45556, 0)
 shape = SubResource("BoxShape3D_oh25l")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.259697, -0.60421, 0.753318, 0.196921, 0.796825, 0.571219, -0.945399, 0, 0.325915, 3.76237, 4.65471, 0)
-light_color = Color(0.792157, 0.882353, 1, 1)
+transform = Transform3D(-0.109338, -0.153061, 0.982149, 0.272872, 0.945492, 0.177725, -0.955817, 0.287433, -0.0616123, 3.76237, 4.65471, -0.880233)
+light_color = Color(0.297569, 0.551674, 0.934968, 1)
+light_indirect_energy = 3.994
 
-[node name="Randomizer" type="Node" parent="."]
+[node name="SignalBro" type="Node" parent="."]
 script = ExtResource("2_umy4m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gn1pm")
+camera_attributes = SubResource("CameraAttributesPractical_3bgpj")
+script = ExtResource("5_mterr")
