@@ -1,3 +1,5 @@
+> WARNING: we changed plans under development. If using Git, check out the branch **plan-b**.
+
 > TODO: adapter: exit gracefully: async event loop and SIGTERM
 
 # bachelor
