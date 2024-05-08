@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://tet53fghpvak"]
+[gd_scene load_steps=16 format=3 uid="uid://tet53fghpvak"]
 
 [ext_resource type="PackedScene" uid="uid://bfw7373a3nqn8" path="res://man.tscn" id="1_73n6f"]
 [ext_resource type="Script" path="res://main.gd" id="1_gerdv"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Camera3D.gd" id="3_gypel"]
 [ext_resource type="Sky" uid="uid://f1a6ko11da4j" path="res://sky.tres" id="5_g4rbc"]
 [ext_resource type="Script" path="res://WorldEnvironment.gd" id="5_mterr"]
+[ext_resource type="Script" path="res://Cube.gd" id="7_6ywg6"]
+[ext_resource type="Script" path="res://Sphere.gd" id="8_phhp3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oh25l"]
 
@@ -18,6 +20,16 @@ ambient_light_energy = 0.06
 reflected_light_source = 1
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3bgpj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4qibk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrone"]
+albedo_color = Color(0.31, 0.908, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4rjob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4go2v"]
+albedo_color = Color(1, 0.42, 0.42, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_gerdv")
@@ -51,3 +63,15 @@ script = ExtResource("2_umy4m")
 environment = SubResource("Environment_gn1pm")
 camera_attributes = SubResource("CameraAttributesPractical_3bgpj")
 script = ExtResource("5_mterr")
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70517, 2.77206, 0)
+mesh = SubResource("BoxMesh_4qibk")
+surface_material_override/0 = SubResource("StandardMaterial3D_rrone")
+script = ExtResource("7_6ywg6")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 3.2465, 1.94343, 0)
+mesh = SubResource("SphereMesh_4rjob")
+surface_material_override/0 = SubResource("StandardMaterial3D_4go2v")
+script = ExtResource("8_phhp3")

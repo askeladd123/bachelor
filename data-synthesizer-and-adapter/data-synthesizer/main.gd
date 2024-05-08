@@ -1,7 +1,7 @@
 extends Node
 
 const TARGET_IMAGES = 512
-const GENERATOR_VERSION = '0.0.1'
+const GENERATOR_VERSION = '0.1.0'
 const DATA_DIR_NAME = 'generated-data'
 var STARTUP_DATETIME = get_datetime() 
  
